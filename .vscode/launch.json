@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // 현재 열린 Python 파일을 디버그 실행
+      "name": "Python: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      // .env 파일의 환경변수를 자동으로 로드
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      // pytest 전체 테스트 디버그 실행
+      "name": "Python: pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests/", "-v"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

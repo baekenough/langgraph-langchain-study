@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    // Python 핵심
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    // Jupyter Notebook 지원
+    "ms-toolsai.jupyter",
+    // Ruff: 빠른 Python 린터 + 포맷터
+    "charliermarsh.ruff"
+  ]
+}

@@ -1,7 +1,7 @@
 # Phase 02: VSCode 개발 환경
 
-> **예상 소요시간**: 30분  
-> **난이도**: ★☆☆☆☆  
+> **예상 소요시간**: 30분
+> **난이도**: ★☆☆☆☆
 > **선행 페이즈**: [Phase 01: UV로 Python 환경 구성](./01-uv-python-setup.md)
 
 ---
@@ -114,7 +114,7 @@ print(f"Python: {sys.version}")
 import langchain
 import langgraph
 print(f"LangChain: {langchain.__version__}")
-print(f"LangGraph: {langgraph.__version__}")
+print(f"LangGraph: {langgraph.version.__version__}")
 ```
 
 ```python
@@ -191,14 +191,14 @@ uv run ruff check .
 
 ## ✏️ 실습 과제
 
-1. **확장 설치**: `.vscode/extensions.json`에 있는 4개 확장을 모두 설치하세요.  
+1. **확장 설치**: `.vscode/extensions.json`에 있는 4개 확장을 모두 설치하세요.
    (`Cmd+Shift+X`에서 각 ID로 검색)
 
 2. **인터프리터 확인**: 오른쪽 하단 Python 버전이 `.venv` 경로를 가리키는지 확인하세요.
 
 3. **Jupyter 실험**: `experiments/hello_langchain.ipynb`를 만들고 위 코드를 실행해보세요.
 
-4. **디버거 실습**: `debug_example.py`를 만들고 중단점을 걸어 디버거로 실행해보세요.  
+4. **디버거 실습**: `debug_example.py`를 만들고 중단점을 걸어 디버거로 실행해보세요.
    `msg` 변수의 타입이 단계마다 어떻게 바뀌는지 관찰하세요.
 
 ---

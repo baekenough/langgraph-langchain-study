@@ -1,0 +1,41 @@
+{
+  // Python 인터프리터: UV가 생성한 .venv 사용
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  // Python 파일에 Ruff 포맷터 적용
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  // Pylance 타입 검사 (basic: 너무 엄격하지 않게)
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+
+  // pytest 설정
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+
+  // 파일 연관: .env.example을 dotenv로 인식
+  "files.associations": {
+    ".env.example": "dotenv",
+    ".env.*": "dotenv"
+  },
+
+  // 편집기 기본값
+  "editor.rulers": [88],
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "jupyter.kernels.excludePythonEnvironments": [
+    "${workspaceFolder}/.venv/bin/python"
+  ]
+}
