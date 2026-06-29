@@ -131,6 +131,8 @@ follow_up = llm.invoke(messages)
 print(follow_up.content)
 ```
 
+> **비용 예고**: 멀티턴 대화는 매 턴 **전체 이력**을 API에 재전송하므로, 대화가 길어질수록 입력 토큰 비용이 선형으로 증가합니다. 고정된 시스템 프롬프트나 이력 앞부분을 provider 서버에서 재사용하는 **provider prefix 캐시(cache_control)** 로 이 비용을 완화하는 방법은 [Phase 39: 비용·캐싱 최적화](../05-production/39-cost-caching-optimization.md)에서 다룹니다.
+
 ### 예제 3: stream — 토큰 단위 실시간 출력
 
 ```python
