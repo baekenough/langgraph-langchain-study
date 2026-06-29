@@ -138,6 +138,7 @@ EVAL_DATASET: list[EvalSample] = [
 ### RAG 시스템 준비 (Phase 15~16 결과물)
 
 ```python
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import WebBaseLoader
@@ -150,7 +151,7 @@ from langchain_core.documents import Document
 # LLM: OpenRouter 경유
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -554,9 +555,11 @@ save_results_to_csv(eval_results, "rag_eval_results.csv")
 # 같은 모델이 자신의 출력을 평가 → 과대 평가 경향
 
 # 해결: 평가 LLM을 더 강력한 모델로 교체
+from pydantic import SecretStr
+
 eval_llm = ChatOpenAI(
     model="openai/gpt-4o",  # 더 강한 모델로 평가
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

@@ -71,13 +71,14 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
+from pydantic import SecretStr
 
 load_dotenv()
 
 # 모델 초기화 (OpenRouter 경유)
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -127,12 +128,13 @@ from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage
 from langgraph.prebuilt import create_react_agent
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -175,12 +177,13 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -235,12 +238,13 @@ from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -303,12 +307,13 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

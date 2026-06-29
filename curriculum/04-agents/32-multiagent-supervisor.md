@@ -69,7 +69,7 @@ def supervisor_node(state):
 import os
 from typing import Annotated, Literal
 from typing_extensions import TypedDict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
@@ -82,7 +82,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -255,7 +255,7 @@ print(result["messages"][-1].content)
 import os
 from typing import Annotated
 from typing_extensions import TypedDict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
@@ -268,7 +268,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

@@ -96,6 +96,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -109,7 +110,7 @@ print(f"LangSmith 프로젝트: {project}")
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -141,12 +142,13 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langsmith import traceable
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -220,12 +222,13 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -267,12 +270,13 @@ from typing import TypedDict
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 from langgraph.graph import StateGraph, END
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -344,6 +348,7 @@ from langsmith import Client
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -361,7 +366,7 @@ def langsmith_project(project_name: str):
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

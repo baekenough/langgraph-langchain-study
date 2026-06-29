@@ -87,6 +87,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import BaseMessage, HumanMessage
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
+from pydantic import SecretStr
 from typing_extensions import TypedDict
 
 load_dotenv()
@@ -104,7 +105,7 @@ def get_llm() -> ChatOpenAI:
     """Create LLM using OpenRouter."""
     return ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
     )

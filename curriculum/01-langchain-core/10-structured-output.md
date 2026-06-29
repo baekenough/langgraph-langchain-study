@@ -58,14 +58,14 @@ Person(name="김민수", age=32, occupation="백엔드 개발자")
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -96,7 +96,7 @@ print(result.model_dump())   # 딕셔너리 변환
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -104,7 +104,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -143,7 +143,7 @@ for text in texts:
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -151,7 +151,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -195,14 +195,14 @@ for i, step in enumerate(result.steps, 1):
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -255,7 +255,7 @@ for review in reviews:
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -263,7 +263,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -307,7 +307,7 @@ for posting, result in zip(postings, results):
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
@@ -316,7 +316,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

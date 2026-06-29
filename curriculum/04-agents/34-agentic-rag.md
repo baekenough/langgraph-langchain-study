@@ -79,12 +79,13 @@ from langchain_core.tools import tool
 from langchain_core.documents import Document
 from langchain_community.vectorstores import InMemoryVectorStore
 from langgraph.prebuilt import create_react_agent
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -92,7 +93,7 @@ llm = ChatOpenAI(
 # 임베딩: OpenAI 직접 사용 (OpenRouter는 임베딩 미지원)
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),
 )
 
 # 샘플 문서 생성
@@ -179,7 +180,7 @@ print(r2["messages"][-1].content)
 import os
 from typing import Annotated, Literal
 from typing_extensions import TypedDict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.documents import Document
@@ -190,14 +191,14 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),
 )
 
 # 지식 베이스 구성
@@ -386,7 +387,7 @@ print(result["generation"])
 ```python
 import os
 from typing_extensions import TypedDict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.documents import Document
@@ -397,14 +398,14 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),
 )
 
 # 지식 베이스
@@ -527,19 +528,20 @@ from langchain_core.tools import tool
 from langchain_core.documents import Document
 from langchain_community.vectorstores import InMemoryVectorStore
 from langgraph.prebuilt import create_react_agent
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),
 )
 
 # 두 개의 분리된 지식 베이스

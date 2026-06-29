@@ -76,7 +76,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -124,7 +124,7 @@ def get_llm(temperature: float = 0.0) -> ChatOpenAI:
     """Create a ChatOpenAI instance using OpenRouter."""
     return ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=temperature,
     )
@@ -171,7 +171,7 @@ from typing import AsyncGenerator
 
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -191,7 +191,7 @@ async def token_generator(message: str) -> AsyncGenerator[str, None]:
     """
     llm = ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
         streaming=True,
@@ -255,7 +255,7 @@ from typing import Annotated, AsyncGenerator
 from dotenv import load_dotenv
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, BaseMessage
@@ -279,7 +279,7 @@ def build_graph() -> StateGraph:
     """Build a simple conversational LangGraph."""
     llm = ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
     )

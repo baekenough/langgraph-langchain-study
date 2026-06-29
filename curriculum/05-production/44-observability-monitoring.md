@@ -174,6 +174,7 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langsmith import traceable  # type: ignore[import]
+from pydantic import SecretStr
 
 # NOTE: langsmith 패키지가 필요합니다: pip install langsmith
 
@@ -192,7 +193,7 @@ async def chat_with_metadata(
     """
     llm = ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
         # LangSmith run metadata (visible in dashboard)
@@ -222,7 +223,7 @@ import os
 from enum import Enum
 from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from fastapi import APIRouter, HTTPException
 from langsmith import Client as LangSmithClient  # type: ignore[import]
 
@@ -257,7 +258,7 @@ async def submit_feedback(feedback: FeedbackRequest) -> dict[str, str]:
     }
 
     try:
-        client = LangSmithClient(api_key=os.environ["LANGSMITH_API_KEY"])
+        client = LangSmithClient(api_key=SecretStr(os.environ["LANGSMITH_API_KEY"]))
         client.create_feedback(
             run_id=feedback.run_id,
             key="user_rating",
@@ -284,6 +285,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.outputs import LLMResult
 from langchain_core.callbacks import AsyncCallbackHandler
+from pydantic import SecretStr
 
 logger = logging.getLogger(__name__)
 
@@ -339,7 +341,7 @@ async def invoke_with_metrics(message: str, user_id: str) -> str:
 
     llm = ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
         callbacks=[callback],

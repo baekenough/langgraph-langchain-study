@@ -27,13 +27,14 @@ OpenAI, Anthropic, Google 등 어느 모델을 쓰더라도 `.invoke()`, `.strea
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",        # OpenRouter 모델 ID
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -75,13 +76,14 @@ Chat Model은 단순 문자열이 아니라 **메시지 객체 리스트**를 �
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -99,6 +101,7 @@ print(response.usage_metadata)  # 토큰 사용량 정보
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 
@@ -106,7 +109,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -133,13 +136,14 @@ print(follow_up.content)
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0.7,
 )
@@ -155,13 +159,14 @@ print()  # 최종 개행
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -186,6 +191,7 @@ for q, r in zip(questions, responses):
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
@@ -194,7 +200,7 @@ def create_llm(model_id: str, temperature: float = 0) -> ChatOpenAI:
     """OpenRouter 모델 ID를 받아 ChatOpenAI 인스턴스를 반환합니다."""
     return ChatOpenAI(
         model=model_id,
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=temperature,
     )
@@ -219,13 +225,14 @@ for name, llm in models.items():
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

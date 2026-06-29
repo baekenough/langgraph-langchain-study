@@ -45,11 +45,12 @@ openai_key = os.getenv("OPENAI_API_KEY")
 
 ```python
 from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",       # OpenRouter 모델명
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     temperature=0,
 )
 ```
@@ -57,18 +58,20 @@ llm = ChatOpenAI(
 ### 다른 모델 사용 예
 
 ```python
+from pydantic import SecretStr
+
 # Claude (via OpenRouter)
 llm_claude = ChatOpenAI(
     model="anthropic/claude-3.5-sonnet",
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
 )
 
 # Llama (via OpenRouter)
 llm_llama = ChatOpenAI(
     model="meta-llama/llama-3.3-70b-instruct",
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
 )
 ```
 
@@ -90,10 +93,11 @@ print(response.content)
 
 ```python
 from langchain_openai import OpenAIEmbeddings
+from pydantic import SecretStr
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.getenv("OPENAI_API_KEY"),
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),
 )
 
 # 단일 텍스트 임베딩

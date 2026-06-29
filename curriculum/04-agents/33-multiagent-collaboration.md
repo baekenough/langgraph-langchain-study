@@ -70,12 +70,13 @@ from langchain_core.messages import BaseMessage, AIMessage, ToolMessage
 from langgraph.graph import StateGraph, START, END, MessagesState
 from langgraph.types import Command
 from langgraph.prebuilt import ToolNode
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

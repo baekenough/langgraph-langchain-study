@@ -90,12 +90,13 @@ import time
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -166,6 +167,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.caches import InMemoryCache
 from langchain.globals import set_llm_cache
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -174,7 +176,7 @@ set_llm_cache(InMemoryCache())
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,  # 캐싱은 temperature=0일 때만 의미 있음
 )
@@ -224,6 +226,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_community.cache import SQLiteCache
 from langchain.globals import set_llm_cache
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -234,7 +237,7 @@ set_llm_cache(SQLiteCache(database_path=cache_path))
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -273,6 +276,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -281,7 +285,7 @@ def make_llm(model: str) -> ChatOpenAI:
     """모델을 지정해 ChatOpenAI 인스턴스를 생성합니다."""
     return ChatOpenAI(
         model=model,
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
     )
@@ -354,12 +358,13 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -431,12 +436,13 @@ import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -533,11 +539,13 @@ for tip in tips:
 ### 1. temperature > 0에서 캐싱 오류
 
 ```python
+from pydantic import SecretStr
+
 # temperature > 0이면 캐시가 동작하지 않습니다
 # LangChain은 temperature=0인 경우에만 캐싱을 적용합니다
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,  # 캐싱을 위해 0으로 설정
 )

@@ -176,7 +176,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 
 load_dotenv()
 
@@ -204,7 +204,7 @@ def build_output_validator() -> ChatOpenAI:
     """Build a lightweight LLM for output validation."""
     return ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
     )
@@ -266,6 +266,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import AIMessage
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -282,7 +283,7 @@ class GuardrailViolation(Exception):
 def build_main_llm() -> ChatOpenAI:
     return ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
     )

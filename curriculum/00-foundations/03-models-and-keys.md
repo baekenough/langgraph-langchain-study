@@ -106,10 +106,11 @@ OPENAI_API_KEY=sk-proj-abc123...
 # Python 코드
 from dotenv import load_dotenv
 import os
+from pydantic import SecretStr
 
 load_dotenv()  # .env 파일을 읽어 환경변수로 등록
 
-api_key = os.environ["OPENROUTER_API_KEY"]
+api_key = SecretStr(os.environ["OPENROUTER_API_KEY"])
 ```
 
 > `.gitignore`에 `.env`가 포함되어 있는지 반드시 확인하세요.
@@ -168,6 +169,7 @@ LANGSMITH_PROJECT=langchain-langgraph-study
 # examples/hello_openrouter.py
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 
@@ -177,7 +179,7 @@ load_dotenv()
 # OpenRouter로 채팅 모델 초기화
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",       # OpenRouter 모델 ID: {벤더}/{모델}
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,                    # 재현 가능한 결과를 위해 0으로 설정
 )
@@ -203,13 +205,14 @@ uv run python examples/hello_openrouter.py
 # examples/another_vendor.py
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
 # OpenRouter 공통 설정을 딕셔너리로 관리
 openrouter_kwargs = {
-    "api_key": os.environ["OPENROUTER_API_KEY"],
+    "api_key": SecretStr(os.environ["OPENROUTER_API_KEY"]),
     "base_url": "https://openrouter.ai/api/v1",
     "temperature": 0,
 }
@@ -240,6 +243,7 @@ for name, llm in [("GPT-4o-mini", llm_gpt), ("Claude-3.5-Haiku", llm_claude)]:
 # RAG 파트(Phase 13)에서 사용할 임베딩 — 지금은 참고만
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import OpenAIEmbeddings
 
 load_dotenv()
@@ -248,7 +252,7 @@ load_dotenv()
 # OpenRouter는 임베딩 API를 제공하지 않으므로 OpenAI 직접 사용
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.environ["OPENAI_API_KEY"],  # OPENROUTER_API_KEY가 아님!
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),  # OPENROUTER_API_KEY가 아님!
 )
 
 # Phase 13에서 본격 학습
@@ -261,6 +265,7 @@ embeddings = OpenAIEmbeddings(
 # examples/model_parameter.py
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 
@@ -268,7 +273,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0.7,    # 창의성 (0=결정적, 1=창의적)
     max_tokens=500,     # 최대 출력 토큰

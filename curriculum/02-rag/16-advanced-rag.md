@@ -71,6 +71,8 @@ load_dotenv()
 
 ```python
 import os
+
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import WebBaseLoader
@@ -80,7 +82,7 @@ from langchain_core.documents import Document
 # LLM: OpenRouter 경유
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

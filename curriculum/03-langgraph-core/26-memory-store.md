@@ -167,10 +167,11 @@ from langgraph.store.memory import InMemoryStore
 from langgraph.store.base import BaseStore
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -284,10 +285,11 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.store.memory import InMemoryStore
 from langgraph.store.base import BaseStore
 from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -365,6 +367,7 @@ from langgraph.store.memory import InMemoryStore
 from langgraph.store.base import BaseStore
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
 # ─── 두 메모리 메커니즘의 역할 분담 ───
 #
@@ -377,7 +380,7 @@ from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

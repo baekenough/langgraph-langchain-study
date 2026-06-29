@@ -161,6 +161,7 @@ from langsmith import Client
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from datetime import date
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -168,7 +169,7 @@ client = Client()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -208,6 +209,7 @@ from dotenv import load_dotenv
 from langsmith import Client
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -215,7 +217,7 @@ client = Client()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -324,6 +326,7 @@ from langsmith import Client, evaluate
 from langsmith.schemas import Run, Example
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -331,7 +334,7 @@ client = Client()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

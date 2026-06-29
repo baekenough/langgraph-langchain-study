@@ -85,12 +85,13 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -141,6 +142,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -148,7 +150,7 @@ load_dotenv()
 def make_llm(model: str) -> ChatOpenAI:
     return ChatOpenAI(
         model=model,
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
     )
@@ -197,6 +199,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -205,7 +208,7 @@ def make_llm_with_timeout(timeout_seconds: float = 30.0) -> ChatOpenAI:
     """타임아웃이 설정된 LLM을 생성합니다."""
     return ChatOpenAI(
         model="openai/gpt-4o-mini",
-        api_key=os.environ["OPENROUTER_API_KEY"],
+        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
         base_url="https://openrouter.ai/api/v1",
         temperature=0,
         timeout=timeout_seconds,      # 요청 타임아웃 (초)
@@ -256,6 +259,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.rate_limiters import InMemoryRateLimiter
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -271,7 +275,7 @@ rate_limiter = InMemoryRateLimiter(
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
     rate_limiter=rate_limiter,  # LLM에 직접 연결
@@ -316,6 +320,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.rate_limiters import InMemoryRateLimiter
 from langchain_core.runnables import RunnableLambda
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -339,7 +344,7 @@ def build_resilient_llm_chain(
     def make_llm(model: str) -> ChatOpenAI:
         return ChatOpenAI(
             model=model,
-            api_key=os.environ["OPENROUTER_API_KEY"],
+            api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
             base_url="https://openrouter.ai/api/v1",
             temperature=0,
             timeout=timeout,
@@ -414,12 +419,13 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from langgraph.graph import StateGraph, END
+from pydantic import SecretStr
 
 load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

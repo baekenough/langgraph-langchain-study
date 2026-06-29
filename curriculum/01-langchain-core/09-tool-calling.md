@@ -130,6 +130,7 @@ print("도구 스키마:", get_weather.args_schema.model_json_schema())
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 
@@ -137,7 +138,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -169,6 +170,7 @@ print("tool_calls:", response.tool_calls)
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
@@ -177,7 +179,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -234,6 +236,7 @@ print(final_response.content)
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
@@ -242,7 +245,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -295,7 +298,7 @@ print(result)
 ```python
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 
@@ -303,7 +306,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -331,6 +334,7 @@ print("tool_calls:", response.tool_calls)
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 
@@ -338,7 +342,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

@@ -156,6 +156,7 @@ from langsmith.schemas import Run, Example
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -163,7 +164,7 @@ client = Client()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -243,6 +244,7 @@ from langsmith.schemas import Run, Example
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -251,7 +253,7 @@ client = Client()
 # 평가 대상 LLM
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -259,7 +261,7 @@ llm = ChatOpenAI(
 # Judge LLM (같은 모델을 사용해도 되지만, 더 강력한 모델이 더 신뢰할 수 있습니다)
 judge_llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -350,6 +352,7 @@ from langsmith.schemas import Run, Example
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from pydantic import SecretStr
 
 load_dotenv()
 
@@ -357,7 +360,7 @@ client = Client()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )

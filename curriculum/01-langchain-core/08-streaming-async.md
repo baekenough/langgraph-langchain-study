@@ -50,6 +50,7 @@ stream:  [토] → [큰] → [단] → [위] → [로] → 점진적 출력 (체
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -58,7 +59,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0.7,
 )
@@ -85,6 +86,7 @@ print(f"\n총 길이: {len(full_response)}자")
 ```python
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 
@@ -92,7 +94,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -108,6 +110,7 @@ for chunk in llm.stream([HumanMessage(content="1부터 5까지 천천히 세어�
 import os
 import asyncio
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -116,7 +119,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -146,6 +149,7 @@ import os
 import asyncio
 import time
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -154,7 +158,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -195,6 +199,7 @@ asyncio.run(main())
 import os
 import asyncio
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -203,7 +208,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0.7,
 )
@@ -237,6 +242,7 @@ asyncio.run(main())
 import os
 import asyncio
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -245,7 +251,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
@@ -287,6 +293,7 @@ asyncio.run(main())
 
 import os
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from langchain_openai import ChatOpenAI
@@ -299,7 +306,7 @@ app = FastAPI()
 
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
-    api_key=os.environ["OPENROUTER_API_KEY"],
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     base_url="https://openrouter.ai/api/v1",
     temperature=0.7,
 )

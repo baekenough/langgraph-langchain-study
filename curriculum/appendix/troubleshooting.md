@@ -23,17 +23,19 @@ OpenRouter 채팅 모델을 초기화할 때 `OPENAI_API_KEY`를 사용하거나
 
 **해결**
 ```python
+from pydantic import SecretStr
+
 # 채팅 모델 → OPENROUTER_API_KEY 사용
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),  # OpenRouter 키
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),  # OpenRouter 키
 )
 
 # 임베딩 → OPENAI_API_KEY 사용
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.getenv("OPENAI_API_KEY"),  # OpenAI 키
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),  # OpenAI 키
 )
 ```
 
@@ -85,6 +87,8 @@ OpenRouter는 채팅 완성(Chat Completions) API만 지원합니다. 임베딩 
 임베딩은 반드시 직접 OpenAI API를 사용해야 합니다.
 
 ```python
+from pydantic import SecretStr
+
 # 잘못된 방법
 embeddings = OpenAIEmbeddings(
     base_url="https://openrouter.ai/api/v1",  # OpenRouter로 임베딩 시도 → 실패
@@ -94,7 +98,7 @@ embeddings = OpenAIEmbeddings(
 # 올바른 방법
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    api_key=os.getenv("OPENAI_API_KEY"),  # OpenAI 직접 사용
+    api_key=SecretStr(os.environ["OPENAI_API_KEY"]),  # OpenAI 직접 사용
 )
 ```
 
@@ -506,11 +510,13 @@ httpx.ConnectTimeout
 
 **해결**
 ```python
+from pydantic import SecretStr
+
 # 타임아웃 시간 늘리기
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
+    api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
     timeout=60,  # 초 단위, 기본값 보통 10초
     max_retries=2,
 )
