@@ -1,7 +1,7 @@
 # Phase 03: 모델 제공자와 API 키
 
-> **예상 소요시간**: 45분  
-> **난이도**: ★★☆☆☆  
+> **예상 소요시간**: 45분
+> **난이도**: ★★☆☆☆
 > **선행 페이즈**: [Phase 02: VSCode 개발 환경](./02-vscode-setup.md)
 
 ---
@@ -140,7 +140,7 @@ LLM은 **토큰(token)** 단위로 텍스트를 처리하고 과금합니다.
 ### API 키 발급
 
 1. **OpenRouter**: [openrouter.ai](https://openrouter.ai) → 로그인 → Keys → Create Key
-2. **OpenAI**: [platform.openai.com](https://platform.openai.com) → API Keys → Create new secret key  
+2. **OpenAI**: [platform.openai.com](https://platform.openai.com) → API Keys → Create new secret key
    (RAG 파트 이전에는 필수 아님)
 3. **LangSmith**: [smith.langchain.com](https://smith.langchain.com) → Settings → API Keys
 
@@ -200,6 +200,7 @@ uv run python examples/hello_openrouter.py
 `model` 파라미터만 바꾸면 다른 벤더 모델을 즉시 사용할 수 있습니다:
 
 ```python
+# examples/another_vendor.py
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
@@ -216,11 +217,11 @@ openrouter_kwargs = {
 # GPT-4o-mini (OpenAI)
 llm_gpt = ChatOpenAI(model="openai/gpt-4o-mini", **openrouter_kwargs)
 
-# Claude 3.5 Haiku (Anthropic via OpenRouter)
-llm_claude = ChatOpenAI(model="anthropic/claude-3.5-haiku", **openrouter_kwargs)
+# Claude Sonnet Latest (Anthropic via OpenRouter)
+llm_claude = ChatOpenAI(model="~anthropic/claude-sonnet-latest", **openrouter_kwargs)
 
-# Gemini 2.0 Flash (Google via OpenRouter)
-llm_gemini = ChatOpenAI(model="google/gemini-2.0-flash", **openrouter_kwargs)
+# Gemini 3.5 Flash (Google via OpenRouter)
+llm_gemini = ChatOpenAI(model="google/gemini-3.5-flash", **openrouter_kwargs)
 
 question = "파이썬 리스트 컴프리헨션을 한 문장으로 설명해줘."
 
@@ -232,7 +233,7 @@ for name, llm in [("GPT-4o-mini", llm_gpt), ("Claude-3.5-Haiku", llm_claude)]:
 
 ### 임베딩 미리보기 (OpenAI 직접 사용)
 
-> 임베딩은 **Phase 13 (RAG)** 에서 본격적으로 다룹니다.  
+> 임베딩은 **Phase 13 (RAG)** 에서 본격적으로 다룹니다.
 > 여기서는 OpenAI 임베딩 클래스가 어떻게 생겼는지만 확인합니다.
 
 ```python
@@ -257,6 +258,7 @@ embeddings = OpenAIEmbeddings(
 ### 모델 파라미터 이해
 
 ```python
+# examples/model_parameter.py
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
