@@ -1,0 +1,65 @@
+[project]
+name = "langchain-langgraph-study"
+version = "0.1.0"
+description = "LangChain + LangGraph 학습 커리큘럼 실습 환경"
+requires-python = ">=3.12"
+dependencies = [
+    # LangChain 핵심
+    "langchain>=0.3",
+    "langchain-core>=0.3",
+    # LLM 제공자 통합 (OpenRouter 채팅 + OpenAI 임베딩 모두 langchain-openai로 커버)
+    "langchain-openai>=0.2",
+    "langchain-community>=0.3",
+    # RAG 관련
+    "langchain-chroma>=0.1",
+    "langchain-text-splitters>=0.3",
+    # LangGraph
+    "langgraph>=0.2",
+    "langgraph-checkpoint-sqlite>=1.0",
+    # 관찰가능성
+    "langsmith>=0.1",
+    # 유틸리티
+    "python-dotenv>=1.0",
+    "pydantic>=2.0",
+    # 도구 / 웹 검색
+    "tavily-python>=0.3",
+    # 문서 처리
+    "beautifulsoup4>=4.12",
+    "pypdf>=4.0",
+    # 배포
+    "fastapi>=0.111",
+    "uvicorn>=0.30",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6",
+    "jupyter>=1",
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501", # line-length — ruff format이 처리
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["langchain", "langgraph"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
